@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "110877324768",
+    "project_id": "poe-part-2-attempt",
+    "storage_bucket": "poe-part-2-attempt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110877324768:android:9e320c1996786ea6faa785",
+        "android_client_info": {
+          "package_name": "com.example.opsc_part_2_attempt2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaFggJdT5OgRBLk59XVsDGXDAmeu3U_a4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110877324768:android:52a5274b7a20f081faa785",
+        "android_client_info": {
+          "package_name": "com.example.poe_part_2_attempt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaFggJdT5OgRBLk59XVsDGXDAmeu3U_a4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

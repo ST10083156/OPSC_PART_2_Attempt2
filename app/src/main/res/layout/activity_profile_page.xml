@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfilePage"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/profileTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Profile"
+        android:textSize="45dp"
+        android:layout_marginBottom="24dp"
+        />
+
+    <TextView
+        android:id="@+id/profileUsernameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textSize="18dp"
+
+
+
+        />
+
+    <EditText
+        android:id="@+id/usernameET"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_marginTop="12dp"
+        android:hint="Enter a unique username"
+        android:textSize="18dp"
+
+        ></EditText>
+
+
+    <TextView
+        android:id="@+id/emailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="18dp"
+        android:layout_marginTop="24dp"
+        />
+
+    <EditText
+        android:id="@+id/emailET"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:hint="Enter your email"></EditText>
+    <TextView
+        android:id="@+id/pictureTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Picture"
+        android:textSize="18dp"
+        android:layout_marginTop="24dp"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        android:layout_marginTop="12dp"
+        />
+
+    <Button
+        android:id="@+id/pictureBtn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Add Picture"
+        android:layout_marginTop="12dp"
+        >
+
+    </Button>
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="12dp"
+        >
+
+    </Button>
+</LinearLayout>
