@@ -1,8 +1,10 @@
-package com.example.poe_part_2_attempt
+package com.example.opsc_part_2_attempt2
+
+import android.net.Uri
 
 data class User(
     val userID : String,
     val  username : String,
     val email : String,
-    val PictureReference : String
+    val pictureReference : Uri?
 )

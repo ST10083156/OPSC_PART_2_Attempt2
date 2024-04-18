@@ -1,4 +1,4 @@
-package com.example.poe_part_2_attempt
+package com.example.opsc_part_2_attempt2
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +17,12 @@ class RegistrationPage : AppCompatActivity() {
         binding = ActivityRegistrationPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-
+binding.regBtn.setOnClickListener{register()}
+        binding.loginPageBtn.setOnClickListener {
+            var intent = Intent(this, MainActivity::class.java)
+startActivity(intent)
+            finish()
+        }
     }
     private fun register(){
 

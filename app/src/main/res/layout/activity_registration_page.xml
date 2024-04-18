@@ -27,13 +27,13 @@
         android:layout_marginTop="25dp"
         android:hint="Password" />
     <Button
-        android:id="@+id/registrationPageBtn"
+        android:id="@+id/regBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
         android:layout_marginTop="25dp"/>
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/loginPageBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back To Login"

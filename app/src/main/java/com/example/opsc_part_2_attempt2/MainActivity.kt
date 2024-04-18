@@ -1,4 +1,4 @@
-package com.example.poe_part_2_attempt
+package com.example.opsc_part_2_attempt2
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity() {
                     val checkUserID = userID
                     if (existingID == checkUserID)
                     {
-                        val intent = Intent (this, ProfileViewPage::class.java)
+                      /*  val intent = Intent (this, ProfileViewPage::class.java)
                         startActivity(intent)
-                        finish()
+                        finish()*/
                     }
                 }
                 else {
