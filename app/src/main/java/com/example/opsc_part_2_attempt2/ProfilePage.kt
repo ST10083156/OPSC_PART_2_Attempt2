@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.io.ByteArrayOutputStream
 
 class ProfilePage : AppCompatActivity() {
+    //Page where user enters their details for storage in the "Users" collection in firestore
     private val TAG: String = "ProfilePage"
     private lateinit var binding: ActivityProfilePageBinding
     private val PICK_IMAGE_REQUEST = 1
@@ -31,9 +32,19 @@ class ProfilePage : AppCompatActivity() {
         setContentView(binding.root)
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
+            //getting user id if they are signed in
             currentUserID = currentUser.uid
         }
+        else{
+            //if user not found then user will be returned to login screen
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         binding.pictureBtn.setOnClickListener{pictureAdd()}
+
+        //submit button creates user objects depending on the filled out fields and stores them...
+        //...in firestore
         binding.submitBtn.setOnClickListener{
 if ( binding.usernameET.text != null)
 {
@@ -65,6 +76,8 @@ if ( binding.usernameET.text != null)
         {
             Toast.makeText(this, "Please fill all the relevant fields", Toast.LENGTH_LONG)
         }
+            //once created this part adds them to the database using the "addToDatabase" function...
+            //then it sends them to their TimesheetEntriesList
             if (user!=null) {
                 addToDatabase(user)
                 var intent = Intent(this, TimsheetEntriesList::class.java)
@@ -75,6 +88,9 @@ if ( binding.usernameET.text != null)
 
 
     }
+
+    //this function returns the uri of the image in the imageview by using the...
+    //..."getImageUriFromBitmap" function to extract the bitmap of the image and converting it to a path
     private fun getImageUri(imageView: ImageView): Uri? {
         val drawable = imageView.drawable
         if (drawable is BitmapDrawable) {
@@ -92,13 +108,15 @@ if ( binding.usernameET.text != null)
         return Uri.parse(path)
     }
 
+    //this function is used to add a picture from the gallery to the imageview
     fun pictureAdd(){
 
         var intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
 
-
     }
+
+    //if the picture adds successfully, this function sets the imageview to the picture selected
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
@@ -107,6 +125,7 @@ if ( binding.usernameET.text != null)
         }
     }
 
+    //this function adds the user to the database in the "Users" collection
     fun addToDatabase( user: User)
     {
         val db = FirebaseFirestore.getInstance()
@@ -116,7 +135,7 @@ if ( binding.usernameET.text != null)
         usersCollection.add(user)
             .addOnSuccessListener {document ->
 
-                Log.d(TAG, "User added with ID: ${document.id}")
+                Log.d(TAG, "User added ")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding user", e)
