@@ -18,6 +18,11 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
     </style>
+    <style name="RoundCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+        <item name="color">@color/white</item>
+    </style>
 
     <style name="Theme.OPSC_PART_2_Attempt2" parent="Base.Theme.OPSC_PART_2_Attempt2" />
 </resources>
