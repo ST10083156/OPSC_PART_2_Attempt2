@@ -23,6 +23,5 @@
         <item name="cornerSize">10dp</item>
         <item name="color">@color/white</item>
     </style>
-
     <style name="Theme.OPSC_PART_2_Attempt2" parent="Base.Theme.OPSC_PART_2_Attempt2" />
 </resources>

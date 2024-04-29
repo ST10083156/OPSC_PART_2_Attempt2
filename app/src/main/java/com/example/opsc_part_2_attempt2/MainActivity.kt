@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) {
             if (it.isSuccessful)
             {
-                Toast.makeText(this, "Successfully LoggedIn", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_SHORT).show()
 
                 //gets an instance of the current user
                 val user = FirebaseAuth.getInstance().currentUser
@@ -50,29 +50,30 @@ class MainActivity : AppCompatActivity() {
                     //if user is found, user id is extracted
                     userID = user.uid
                 }
+                else
+                {
+                    Toast.makeText(this,"User not found", Toast.LENGTH_SHORT)
+                }
 
                 //checks whether user details have been stored in firebase by checking if the user id is stored
                 val db = FirebaseFirestore.getInstance()
-                db.collection("users").document("UserID").get().addOnSuccessListener {
-                        document -> if (document.exists())
+                db.collection("Users").whereEqualTo("userID",userID).get().addOnSuccessListener {
+                        documents -> if (!documents.isEmpty)
                 {
-                    val existingID = document.getString("UserID")
-                    val checkUserID = userID
-                    if (existingID == checkUserID)
-                    {
-                        db.collection("timesheetEntries").whereEqualTo("UserID", userID).get().addOnSuccessListener {
-                            document -> if (document!=null)
+                        db.collection("timesheetEntries").whereEqualTo("userID", userID).get().addOnSuccessListener {
+                            timesheetDocuments -> if (!timesheetDocuments.isEmpty)
                             {
                                 val intent = Intent (this, TimsheetEntriesList::class.java)
                                 startActivity(intent)
                                 finish()
-
+                            }
+                            else
+                            {
+                                val intent = Intent (this, NewTimesheetEntry::class.java)
+                                startActivity(intent)
+                                finish()
                             }
                         }
-                      /*  val intent = Intent (this, ProfileViewPage::class.java)
-                        startActivity(intent)
-                        finish()*/
-                    }
                 }
                 //if it is not stored it redirects to a page where they can enter their details
                 else {

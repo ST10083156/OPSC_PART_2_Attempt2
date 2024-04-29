@@ -58,8 +58,16 @@ class TimsheetEntriesList : AppCompatActivity() {
         recyclerView.adapter=adapter
 
 
+
+
     }
 
+    //the click listener for each item
+    /*override fun onItemClick(item: TimesheetEntry) {
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra("selectedItem", item)
+        startActivity(intent)
+    }*/
     //function to extract user's timesheet entries from the firestore database
     private fun getUserEntries(userID: String):List<TimesheetEntry> {
         val data = mutableListOf<TimesheetEntry>()

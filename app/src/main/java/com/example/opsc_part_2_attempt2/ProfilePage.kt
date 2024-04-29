@@ -56,6 +56,14 @@ if ( binding.usernameET.text != null)
                 email = currentUser.email.toString(),
                 pictureReference = null
             )
+            //once created this part adds them to the database using the "addToDatabase" function...
+            //then it sends them to their TimesheetEntriesList
+            if (user!=null) {
+                addToDatabase(user)
+                val intent = Intent(this, TimsheetEntriesList::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
     else
@@ -66,7 +74,16 @@ if ( binding.usernameET.text != null)
                 username = binding.usernameET.text.toString(),
                 email = currentUser.email.toString(),
                 pictureReference = getImageUri(binding.imageView)
+
             )
+            //once created this part adds them to the database using the "addToDatabase" function...
+            //then it sends them to their TimesheetEntriesList
+            if (user!=null) {
+                addToDatabase(user)
+                val intent = Intent(this, TimsheetEntriesList::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
     }
@@ -76,14 +93,7 @@ if ( binding.usernameET.text != null)
         {
             Toast.makeText(this, "Please fill all the relevant fields", Toast.LENGTH_LONG)
         }
-            //once created this part adds them to the database using the "addToDatabase" function...
-            //then it sends them to their TimesheetEntriesList
-            if (user!=null) {
-                addToDatabase(user)
-                var intent = Intent(this, TimsheetEntriesList::class.java)
-                startActivity(intent)
-                finish()
-            }
+
         }
 
 
