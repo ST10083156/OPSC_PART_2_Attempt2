@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
                 //checks whether user details have been stored in firebase by checking if the user id is stored
                 val db = FirebaseFirestore.getInstance()
-                db.collection("Users").whereEqualTo("userID",userID).get().addOnSuccessListener {
+                db.collection("users").whereEqualTo("userID",userID).get().addOnSuccessListener {
                         documents -> if (!documents.isEmpty)
                 {
                         db.collection("timesheetEntries").whereEqualTo("userID", userID).get().addOnSuccessListener {

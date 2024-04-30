@@ -80,7 +80,7 @@ if ( binding.usernameET.text != null)
             //then it sends them to their TimesheetEntriesList
             if (user!=null) {
                 addToDatabase(user)
-                val intent = Intent(this, TimsheetEntriesList::class.java)
+                val intent = Intent(this, NewTimesheetEntry::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -139,7 +139,7 @@ if ( binding.usernameET.text != null)
     fun addToDatabase( user: User)
     {
         val db = FirebaseFirestore.getInstance()
-        val usersCollection = db.collection("Users")
+        val usersCollection = db.collection("users")
 
         val user = user
         usersCollection.add(user)

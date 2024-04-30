@@ -1,12 +1,15 @@
-import com.example.opsc_part_2_attempt2.R
+package com.example.opsc_part_2_attempt2
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.opsc_part_2_attempt2.R.id.buttonTimer
+import com.example.opsc_part_2_attempt2.databinding.ActivityNewTimesheetEntryBinding
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class NewTimesheetEntry : AppCompatActivity() {
@@ -14,11 +17,11 @@ class NewTimesheetEntry : AppCompatActivity() {
     private var timerRunning = false
     private var startTime = 0L
     private var elapsedTime = 0L
-
+    private lateinit var buttonTimer: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_new_timesheet_entry)
+        val binding = ActivityNewTimesheetEntryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -26,7 +29,7 @@ class NewTimesheetEntry : AppCompatActivity() {
         }
 
 
-        val buttonTimer: Button = findViewById(buttonTimer)
+        buttonTimer= binding.buttonTimer
         buttonTimer.setOnClickListener {
             if (timerRunning) {
                 // Stop the timer
@@ -40,14 +43,30 @@ class NewTimesheetEntry : AppCompatActivity() {
                 buttonTimer.text = "Stop Timer"
             }
         }
-
-        val buttonAddPicture: Button = findViewById(R.id.buttonAddPicture)
+        val buttonAddPicture: Button = binding.buttonAddPicture
         buttonAddPicture.setOnClickListener {
             // Add functionality to add picture here
         }
+
+
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
+     fun addEntryToDatabase(newEntry: TimesheetEntry) {
+        val db = FirebaseFirestore.getInstance()
+        val timesheetCollection = db.collection("timesheetEntries")
+
+        val tsEntry = newEntry
+        timesheetCollection.add(tsEntry)
+            .addOnSuccessListener {document ->
+
+                Log.d(TAG, "User added ")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding user", e)
+            }
+    }
+
+   override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean("timerRunning", timerRunning)
         outState.putLong("startTime", startTime)
@@ -60,7 +79,7 @@ class NewTimesheetEntry : AppCompatActivity() {
         startTime = savedInstanceState.getLong("startTime")
         elapsedTime = savedInstanceState.getLong("elapsedTime")
         // Update UI based on saved state
-        val buttonTimer: Button = findViewById(buttonTimer)
+
         if (timerRunning) {
             buttonTimer.text = "Stop Timer"
         } else {
@@ -68,3 +87,4 @@ class NewTimesheetEntry : AppCompatActivity() {
         }
     }
 }
+

@@ -10,5 +10,5 @@ data class TimesheetEntry(
     val Category:String,
     val Description:String,
     val TimeSpent: Duration,
-    val Image : String,
+    val Image : String?,
 )
