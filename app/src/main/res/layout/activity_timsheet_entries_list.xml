@@ -13,6 +13,55 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     >
+    <!-- Add TextViews for displaying daily goals -->
+    <TextView
+        android:id="@+id/textViewDailyGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daily Goal: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/textViewDailyGoalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 hours"
+        app:layout_constraintStart_toEndOf="@id/textViewDailyGoal"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Add EditText for setting minimum daily goal -->
+    <EditText
+        android:id="@+id/editTextMinDailyGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Set Min Daily Goal (hours)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewDailyGoal"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Add EditText for setting maximum daily goal -->
+    <EditText
+        android:id="@+id/editTextMaxDailyGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Set Max Daily Goal (hours)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextMinDailyGoal"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Add Button for updating daily goals -->
+    <Button
+        android:id="@+id/buttonSetGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Goals"
+        app:layout_constraintStart_toEndOf="@id/editTextMaxDailyGoal"
+        app:layout_constraintTop_toBottomOf="@id/editTextMinDailyGoal"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"/>
 
 </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
