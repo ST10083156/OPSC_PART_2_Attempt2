@@ -1,4 +1,3 @@
-package com.example.opsc_part_2_attempt2
 import com.example.opsc_part_2_attempt2.R
 
 import android.os.Bundle
@@ -25,6 +24,7 @@ class NewTimesheetEntry : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
         val buttonTimer: Button = findViewById(buttonTimer)
         buttonTimer.setOnClickListener {
