@@ -12,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.graphics.drawable.toDrawable
 import com.example.opsc_part_2_attempt2.databinding.ActivityProfilePageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.getInstance
@@ -48,7 +49,7 @@ class ProfilePage : AppCompatActivity() {
         binding.submitBtn.setOnClickListener{
 if ( binding.usernameET.text != null)
 {
-    if(binding.imageView == null){
+    if(binding.imageView.drawable == R.drawable.ic_launcher_foreground.toDrawable()){
         if (currentUser != null) {
             user = User (
                 userID = currentUserID,
