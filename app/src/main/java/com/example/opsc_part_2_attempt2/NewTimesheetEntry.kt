@@ -1,6 +1,7 @@
 package com.example.opsc_part_2_attempt2
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -8,18 +9,27 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.opsc_part_2_attempt2.databinding.ActivityGraphBinding
 import com.example.opsc_part_2_attempt2.databinding.ActivityNewTimesheetEntryBinding
+import com.example.opsc_part_2_attempt2.databinding.ActivityRegistrationPageBinding
+import com.fake.graphed.Graph
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
-
 class NewTimesheetEntry : AppCompatActivity() {
 
     private var timerRunning = false
     private var startTime = 0L
     private var elapsedTime = 0L
     private lateinit var buttonTimer: Button
+    private lateinit var doneBtn: Button
+    private lateinit var binding: ActivityNewTimesheetEntryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityNewTimesheetEntryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val binding = ActivityNewTimesheetEntryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -29,7 +39,7 @@ class NewTimesheetEntry : AppCompatActivity() {
         }
 
 
-        buttonTimer= binding.buttonTimer
+        buttonTimer = binding.buttonTimer
         buttonTimer.setOnClickListener {
             if (timerRunning) {
                 // Stop the timer
@@ -51,13 +61,13 @@ class NewTimesheetEntry : AppCompatActivity() {
 
     }
 
-     fun addEntryToDatabase(newEntry: TimesheetEntry) {
+    fun addEntryToDatabase(newEntry: TimesheetEntry) {
         val db = FirebaseFirestore.getInstance()
         val timesheetCollection = db.collection("timesheetEntries")
 
         val tsEntry = newEntry
         timesheetCollection.add(tsEntry)
-            .addOnSuccessListener {document ->
+            .addOnSuccessListener { document ->
 
                 Log.d(TAG, "User added ")
             }
@@ -66,7 +76,7 @@ class NewTimesheetEntry : AppCompatActivity() {
             }
     }
 
-   override fun onSaveInstanceState(outState: Bundle) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean("timerRunning", timerRunning)
         outState.putLong("startTime", startTime)
@@ -85,6 +95,19 @@ class NewTimesheetEntry : AppCompatActivity() {
         } else {
             buttonTimer.text = "Start Timer"
         }
+
     }
+
+/*
+    private fun navigateToGraphActivity() {
+
+        // Create an Intent to start the Graph activity
+        binding.doneBtn.setOnClickListener {
+            val intent = Intent(this, Graph::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+    }*/
 }
 
